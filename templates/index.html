@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="ugh, hi." name="description" />
+    <meta content="Makeup Webcam" name="title" />
+    <title>Virtual Drum</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="static/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#practice">Practice</a></li>
+      <li><a data-toggle="tab" href="#game">Game</a></li>
+      <li><a data-toggle="tab" href="#karakoke">Karakoke</a></li>
+      <li><a data-toggle="tab" href="#musmood">Music Mood</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="practice" class="tab-pane fade in active">
+        <div id="container">
+          <h3>Practice Mode</h3>
+          <video autoplay="false" id="videoElement"></video>
+          <img id="imageElement" src="{{ url_for('video_feed') }}" />
+          <canvas id="canvasElement"></canvas>
+        </div>
+      </div>
+
+      <div id="game" class="tab-pane fade in active">
+        <div id="container">
+          <h3>Game in Action</h3>
+          <video autoplay="false" id="videoElement"></video>
+          <img id="imageElement" src="{{ url_for('video_feed') }}" />
+          <canvas id="canvasElement"></canvas>
+        </div>
+      </div>
+
+      <div id="karakoke" class="tab-pane fade in active">
+        <div id="container">
+          <h3>Karakoke</h3>
+          <video autoplay="false" id="videoElement"></video>
+          <img id="imageElement" src="{{ url_for('video_feed') }}" />
+          <canvas id="canvasElement"></canvas>
+        </div>
+      </div>
+
+      <div id="game" class="tab-pane fade in active">
+        <div id="container">
+          <h3>Game in Action</h3>
+          <video autoplay="false" id="videoElement"></video>
+          <img id="imageElement" src="{{ url_for('video_feed') }}" />
+          <canvas id="canvasElement"></canvas>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"
+    ></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
