@@ -1,5 +1,15 @@
-#container {
-  margin: 0px auto;
+body {
+  padding: 10px;
+}
+h1 {
+  font-size: 10vw;
+  font-weight: bold;
+}
+.container {
+  height: auto;
+  width: auto;
+  display: inline-block;
+  white-space: nowrap;
 }
 #videoElement {
   display: none;
@@ -10,12 +20,25 @@
 
 #imageElement {
   background-color: #666;
-  width: 100%;
-  height: 100%;
+  width: 60%;
+  height: 40%;
+  border-radius: 0.3em;
 }
 
 #canvasElement {
   width: 640px;
   height: 480px;
   display: none;
+  border-radius: 0.3em;
 }
+
+/* .practice {
+  background: rgb(41, 171, 214);
+  color: white;
+}
+
+.game {
+  background: rgb(41, 171, 214);
+  color: white;
+}
+ */
