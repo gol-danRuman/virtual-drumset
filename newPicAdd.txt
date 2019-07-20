@@ -1,0 +1,63 @@
+import cv2
+import numpy as np
+from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
+from PIL import Image
+
+# Load a speedo image which has transparency
+# d = Image.open('/home/fm-pc-lt-64/Documents/Learn/EverestHack/testopencv/d1.png').convert('RGBA')
+d = Image.open('/home/fm-pc-lt-64/Documents/Learn/EverestHack/testopencv/hiset.png').convert('RGBA')
+d = d.resize((200,200), Image.ANTIALIAS)
+# Links used: https://www.kaggle.com/lgmoneda/from-image-files-to-numpy-arrays
+# https://theailearner.com/2019/03/18/add-image-to-a-live-camera-feed-using-opencv-python/
+#import cv2 as cv
+image_width = 640
+image_height = 480
+# create an overlay image. You can use any image
+background = np.ones((100,100,3),dtype='uint8')*255
+print(background)
+print(type(background))
+src1 = cv2.imread('d1.jpg')
+print(type(src1))
+
+# img = load_img('/home/fm-pc-lt-64/Documents/Learn/EverestHack/testopencv/d1.png')  # this is a PIL image
+# img = load_img('/home/fm-pc-lt-64/Documents/Learn/EverestHack/testopencv/hiset.jpg')  # this is a PIL image
+# img.thumbnail((image_width, image_height))
+x = img_to_array(img)
+print(type(x))
+print(x.shape)
+#x = x.reshape((100,100,3))
+# Open the camera
+cap = cv2.VideoCapture(0)
+# Set initial value of weights
+alpha = 0.4
+while True:
+    # read the frame
+    ret, frame = cap.read()
+    pilim = Image.fromarray(frame)
+    pilim.paste(d,box=(50,300),mask=d)
+    frame = np.array(pilim)
+    # Select the region in the frame where we want to add the image and add the images using cv2.addWeighted()
+#     added_image = cv2.addWeighted(frame[150:250,150:250,:],alpha,x[150:250,150:250,:],1-alpha,0)
+#     # Change the region with the result
+#     frame[150:250,150:250] = added_image
+#     # For displaying current value of alpha(weights)
+#     font = cv2.FONT_HERSHEY_SIMPLEX
+#     cv2.putText(frame,'alpha:{}'.format(alpha),(10,30), font, 1,(255,255,255),2,cv2.LINE_AA)
+    cv2.imshow('a',frame)
+    k = cv2.waitKey(10)
+    # Press q to break
+    if k == ord('q'):
+        break
+    # press a to increase alpha by 0.1
+    if k == ord('a'):
+        alpha +=0.1
+        if alpha >=1.0:
+            alpha = 1.0
+    # press d to decrease alpha by 0.1
+    elif k== ord('d'):
+        alpha -= 0.1
+        if alpha <=0.0:
+            alpha = 0.0
+# Release the camera and destroy all windows
+cap.release()
+cv2.destroyAllWindows()
