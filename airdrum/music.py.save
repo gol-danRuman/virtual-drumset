@@ -1,0 +1,8 @@
+import pygame
+BD = pygame.mixer.music.load('bassdrum1.wav')
+
+pygame.init()
+pygame.mixer.init()
+sounda= pygame.mixer.Sound("desert_rustle.wav")
+
+sounda.play()
