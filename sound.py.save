@@ -1,0 +1,11 @@
+import pygame,time
+
+pygame.init()
+pygame.mixer.init()
+
+
+
+HI=pygame.mixer.Sound('.mp3')
+HI.play()
+time.sleep(1)
+
