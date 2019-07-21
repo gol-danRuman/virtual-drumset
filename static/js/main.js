@@ -1,26 +1,38 @@
-$(document).ready(function(){
+$(document).ready(function() {
   let namespace = "/test";
   let video = document.querySelector("#videoElement");
   let canvas = document.querySelector("#canvasElement");
-  let ctx = canvas.getContext('2d');
+  let ctx = canvas.getContext("2d");
 
   var localMediaStream = null;
 
-  var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+  var socket = io.connect(
+    location.protocol + "//" + document.domain + ":" + location.port + namespace
+  );
 
   function sendSnapshot() {
     if (!localMediaStream) {
       return;
     }
 
-    ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 300, 150);
+    ctx.drawImage(
+      video,
+      0,
+      0,
+      video.videoWidth,
+      video.videoHeight,
+      0,
+      0,
+      300,
+      150
+    );
 
-    let dataURL = canvas.toDataURL('image/jpeg');
-    socket.emit('input image', dataURL);
+    let dataURL = canvas.toDataURL("image/jpeg");
+    socket.emit("input image", dataURL);
   }
 
-  socket.on('connect', function() {
-    console.log('Connected!');
+  socket.on("connect", function() {
+    console.log("Connected!");
   });
 
   var constraints = {
@@ -30,15 +42,34 @@ $(document).ready(function(){
     }
   };
 
-  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-    video.srcObject = stream;
-    localMediaStream = stream;
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then(function(stream) {
+      video.srcObject = stream;
+      localMediaStream = stream;
 
-    setInterval(function () {
-      sendSnapshot();
-    }, 50);
-  }).catch(function(error) {
-    console.log(error);
-  });
+      setInterval(function() {
+        sendSnapshot();
+      }, 50);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 });
 
+var tabsFn = (function() {
+  function init() {
+    setHeight();
+  }
+
+  function setHeight() {
+    var $tabPane = $(".tab-pane"),
+      tabsHeight = $(".nav-tabs").height();
+
+    $tabPane.css({
+      height: tabsHeight
+    });
+  }
+
+  $(init);
+})();
