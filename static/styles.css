@@ -62,3 +62,9 @@ h1 {
   height: 100%;
   width: 100%;
 }
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  background-color: aqua;
+}

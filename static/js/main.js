@@ -57,7 +57,7 @@ $(document).ready(function() {
     });
 });
 
-var tabsFn = (function() {
+/* var tabsFn = (function() {
   function init() {
     setHeight();
   }
@@ -65,11 +65,11 @@ var tabsFn = (function() {
   function setHeight() {
     var $tabPane = $(".tab-pane"),
       tabsHeight = $(".nav-tabs").height();
-
+    console.log($(".nav-tabs"));
     $tabPane.css({
       height: tabsHeight
     });
   }
 
   $(init);
-})();
+})(); */
